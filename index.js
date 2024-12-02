@@ -4,6 +4,8 @@ const app = express();
 const port = 3000;
 const animalsRouter = require('./routes/animals');
 
+app.use(express.json())
+
 app.get('/', (req, res, next) => {
     res.json({"message": "ok"})
 });
