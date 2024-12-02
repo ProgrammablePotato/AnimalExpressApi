@@ -32,6 +32,16 @@ router.put('/', async function (req, res, next) {
     //res.json({"message": "animals router"})
 })
 
+router.patch('/', async function (req, res, next) {
+    try{
+        res.json(await animals.patchAnimal(req.body))
+    }
+    catch (err) {
+        next(err)
+    }
+    //res.json({"message": "animals router"})
+})
+
 router.delete('/', async function (req, res, next) {
     try{
         res.json(await animals.deleteAnimal(req.body))

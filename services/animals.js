@@ -53,7 +53,28 @@ async function updateAnimal(animal,params) {
             animal.name,
             animal.species,
             animal.price,
-            animal.id,
+            animal.id
+        ]
+    )
+    let message = "Error during updating of animal"
+    if (result.affectedRows){
+        message = "Animal updated successfully"
+    }
+    return {message}
+}
+
+async function patchAnimal(animal,params) {
+    console.log("Patch Animal:",animal)
+    console.log(Object.keys(animal))
+    const result = await db.query(
+        `
+        update animal set name=?, species=?, price=? where id=?;
+        `
+        ,[
+            animal.name,
+            animal.species,
+            animal.price,
+            animal.id
         ]
     )
     let message = "Error during updating of animal"
@@ -67,5 +88,6 @@ module.exports = {
     getDatas,
     createAnimal,
     deleteAnimal,
-    updateAnimal
+    updateAnimal,
+    patchAnimal
 }
